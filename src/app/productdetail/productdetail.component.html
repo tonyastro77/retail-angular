@@ -1,0 +1,55 @@
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+
+  <div fxFlex="40" *ngIf="product">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+           <h3 *ngIf="product">{{product.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="{{ product.image}}" alt={{product.name}}>
+      <mat-card-content>
+        <h3>{{ product.price }} €</h3>
+        <p>{{product.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button [routerLink]="['/productdetail', prev]">
+          <span class="fa fa-chevron-left fa-lg"></span>
+        </button>
+        <button mat-button (click)="goBack()">BACK</button>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+        <button mat-button [routerLink]="['/productdetail', next]">
+          <span class="fa fa-chevron-right fa-lg"></span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex="40" *ngIf="product">
+    <mat-list>
+      <h3>Comments</h3>
+      <mat-list-item *ngFor="let comment of product.comments">
+         <h4 matLine>{{comment.comment}}</h4>
+         <p matLine>{{comment.rating}} stars</p>
+         <p matLine>by {{comment.author}}</p><p matLine>{{comment.date | date:'MMM d, y, h:mm:ss a'}}</p>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div *ngIf="auth.user | async" fxLayout="row" >
+        <mat-form-field class="full-width">
+          <mat-label>leave your comment</mat-label>
+          <textarea matInput placeholder="Ex. I think the product is..." type="text" [(ngModel)]="comments.comment" name="comment" #comment="ngModel" required></textarea>
+        </mat-form-field>
+        <button mat-button (click)="onComment()">Comment</button>
+      </div>
+   </mat-list>
+  </div>
+  <div [hidden]="product">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
+</div>

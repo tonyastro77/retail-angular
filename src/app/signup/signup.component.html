@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  Create new user
+<span class="flex-spacer"></span>
+<button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+<form [formGroup]="registerForm">
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="User name" type="text" formControlName="username">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email@mail.com" type="text" formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password">
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" (click)="createUser()" >Create User</button>
+  </mat-dialog-actions>
+  <a mat-button (click)="openLoginForm()">I already have an account</a>
+</form>
