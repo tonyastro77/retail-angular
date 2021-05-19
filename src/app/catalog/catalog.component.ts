@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Product } from '../shared/product';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -9,13 +8,13 @@ import { ProductService } from '../services/product.service';
 })
 export class CatalogComponent implements OnInit {
 
-  products: Product[];
+  products: any[];
 
   constructor(private productService: ProductService,
     @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
-    this.productService.getProducts()
+    this.productService.getProductsSortedByName()
     .subscribe(products => this.products = products);
   }
 }
