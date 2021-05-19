@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Product } from '../shared/product';
-import { Comment } from '../shared/comment';
-import { map, find } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { baseURL } from '../shared/baseurl';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +19,9 @@ export class ProductService {
   getProducts(){
     return this.productsCollection.valueChanges({ idField: 'id'});
   }
-
+  getProductsSortedByName(){
+    return this.firestore.collection('products', ref => ref.orderBy('name')).valueChanges({ idField: 'id'});
+  }
   getProduct(id: string): Observable<Product> {
     return this.productsCollection.doc(id).valueChanges({ idField: 'id'}).pipe(item => {
       return item;
