@@ -25,8 +25,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
-import { MenuComponent } from './menu/menu.component';
-import { DishdetailComponent } from './dishdetail/dishdetail.component'
 import { ProductService } from './services/product.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -48,8 +46,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    DishdetailComponent,
     HeaderComponent,
     FooterComponent,
     AboutComponent,
