@@ -8,6 +8,7 @@ $background-light: #9575CD;
 $background-pale: #D1C4E9;
 $primary-color-dark:   #512DA8;
 $primary-color:        #673AB7;
+$warning-color:        #FF0000;
 $primary-color-light:  #D1C4E9;
 $primary-color-text:   #FFFFFF;
 $accent-color:         #FFC107;
@@ -41,10 +42,16 @@ body {
 .text-floral-white {
   color: floralwhite!important;
 }
-
+.text-warning{
+  color: $warning-color
+}
 .flex-spacer {
 flex: 1 1 auto;
 }
 .full-width {
   width: 100%;
+}
+.flex-bottom{
+  bottom: 0;
+  left: 0;
 }

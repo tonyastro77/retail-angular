@@ -4,8 +4,6 @@ import { LoginComponent } from '../login/login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection  } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import firebase from 'firebase/app';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +14,7 @@ export class SignupComponent implements OnInit {
   usersCollection: AngularFirestoreCollection<any>;
   user = {username: '', email: '', password: '', remember: false};
   registerForm: FormGroup;
+  error = ''
 
   constructor(public dialogRef: MatDialogRef<SignupComponent>, public dialog: MatDialog,
     public auth: AngularFireAuth, public firestore: AngularFirestore, private fb: FormBuilder ) {
@@ -40,7 +39,7 @@ export class SignupComponent implements OnInit {
           email: email,
           name: username,
       })
-
-    });
+      this.dialogRef.close();
+    }).catch((error) => this.error="Failed to create user");
   }
 }

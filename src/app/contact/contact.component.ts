@@ -7,12 +7,10 @@ import { Feedback, ContactType } from '../shared/feedback';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
+
 export class ContactComponent implements OnInit {
   zoom = 17
-  center: {
-    lat: 60.204406,
-    lng: 24.933361,
-  }
+  center: {}
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
     zoomControl: false,
@@ -33,12 +31,10 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.center = {
-        lat: 60.204406,
-        lng: 24.933361,
-      }
-    })
+    this.center = {
+      lat: 60.204406,
+      lng: 24.933361,
+    }
   }
 
   createForm() {
@@ -55,7 +51,6 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',

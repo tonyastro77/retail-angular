@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -42,6 +43,7 @@ import { PromotionService } from './services/promotion.service';
 import { baseURL } from './shared/baseurl';
 import { CatalogComponent } from './catalog/catalog.component';
 import { ProductdetailComponent } from './productdetail/productdetail.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -78,9 +80,16 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
     MatSelectModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
+    MatSidenavModule,
     FormsModule,
     ReactiveFormsModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     ProductService,

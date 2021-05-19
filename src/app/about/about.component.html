@@ -1,15 +1,19 @@
-<div class="container"
-     fxLayout="column"
-     fxLayoutGap="10px">
+<div
+fxLayout.sm="column"
+fxLayout.xs="column"
+fxLayoutAlign.xs="start center"
+fxLayoutAlign.sm="start center"
+fxLayoutAlign.gt-sm="center center"
+fxLayoutGap="10px">
 
   <mat-list fxFlex>
     <mat-list-item *ngFor="let worker of leadership">
       <img matListAvatar src={{worker.image}} alt={{worker.name}}>
       <h1 matLine> {{worker.name}} </h1>
+      <h1 matLine> {{worker.designation}} </h1>
       <p matLine>
         <span> {{worker.description}} </span>
       </p>
     </mat-list-item>
   </mat-list>
-
 </div>

@@ -1,34 +1,54 @@
 <mat-toolbar color="primary">
-  <a mat-button routerLink="/home"><img src="/assets/images/naviXLogo.jpg" height=30 width=61></a>
-  <a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
-  <a mat-button routerLink="/about" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
-  <a mat-button routerLink="/catalog" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Catalog</a>
-  <a mat-button routerLink="/contact" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+  <a mat-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+    <span class="fa fa-bars fa-lg"></span>
+  </a>
+  <div fxLayout="row" fxShow="”true”" fxHide.lt-md="”true”">
+    <a mat-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
+    <a mat-button routerLink="/about" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
+    <a mat-button routerLink="/catalog" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Catalog</a>
+    <a mat-button routerLink="/contact" routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+  </div>
   <span class="flex-spacer"></span>
   <div *ngIf="auth.user | async as user ; else showLogin" fxLayout="row" >
-    <h1>Welcome {{ user.email }}!</h1>
+    <h1>Logged in!</h1>
     <a mat-button (click)="onLogout()"><span class="fa fa-sign-out fa-lg"></span> Logout</a>
   </div>
   <ng-template #showLogin>
+    <a mat-button routerLink="/home"><img src="/assets/images/naviXLogo.jpg" height=30 width=61></a>
     <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
   </ng-template>
 </mat-toolbar>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center"
-    fxLayoutAlign.gt-sm="center center"
-    fxLayoutGap="10px">
+<mat-sidenav-container>
+  <mat-sidenav #sidenav color="primary">
+    <mat-nav-list fxLayout="column">
+      <a mat-button routerLink="/home" routerLinkActive="active" (click)="sidenav.toggle()"><span class="fa fa-home fa-lg"></span> Home</a>
+      <a mat-button routerLink="/about" routerLinkActive="active" (click)="sidenav.toggle()"><span class="fa fa-info fa-lg"></span> About</a>
+      <a mat-button routerLink="/catalog" routerLinkActive="active" (click)="sidenav.toggle()"><span class="fa fa-list fa-lg"></span> Catalog</a>
+      <a mat-button routerLink="/contact" routerLinkActive="active" (click)="sidenav.toggle()"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container jumbotron"
+      fxLayout="row"
+      fxLayout.sm="column"
+      fxLayout.xs="column"
+      fxLayoutAlign.xs="start center"
+      fxLayoutAlign.sm="start center"
+      fxLayoutAlign.gt-sm="center center"
+      fxLayoutGap="10px">
 
-  <div fxFlex fxFlex.gt-sm="50%">
-    <h1>Retail Shop</h1>
-    <p>Finding the right product and for the right price was never meant to be so easy! We provide products that are meant to be used again for they remain in excellent condition.</p>
-  </div>
-  <div fxFlex fxFlex.gt-sm="20%">
-    <img src="/assets/images/naviXLogo.jpg" alt="Logo">
-  </div>
-  <div fxFlex></div>
-</div>
+      <div fxFlex fxFlex.gt-sm="50%">
+        <h1>Retail Shop</h1>
+        <p>Finding the right product and for the right price was never meant to be so easy! We provide products that are meant to be used again for they remain in excellent condition.</p>
+      </div>
+      <div fxFlex fxFlex.gt-sm="20%">
+        <img src="/assets/images/naviXLogo.jpg" alt="Logo">
+      </div>
+      <div fxFlex></div>
+    </div>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+
