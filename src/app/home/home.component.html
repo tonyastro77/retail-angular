@@ -9,7 +9,7 @@
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
-      <h3>{{product.name | uppercase}}</h3>
+      <h3>{{product.name | uppercase}}</h3><h3>{{ product.price }} €</h3>
     </mat-card-title>
   </mat-card-header>
   <img mat-card-image src="{{ product.image }}" alt="{{ product.name }}">
@@ -22,7 +22,7 @@
   <mat-card-header>
     <div mat-card-avatar></div>
     <mat-card-title>
-      <h3>{{promotion.name | uppercase}}</h3>
+      <h3>{{promotion.name | uppercase}}</h3><h3>{{ promotion.price }} €</h3>
     </mat-card-title>
   </mat-card-header>
   <img mat-card-image src="{{ promotion.image }}" alt="{{ promotion.name }}">

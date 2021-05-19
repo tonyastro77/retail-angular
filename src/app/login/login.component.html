@@ -4,24 +4,27 @@
 <button mat-button mat-dialog-close>&times;</button>
 </mat-toolbar>
 <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
-
-  <mat-dialog-content>
-    <p>
+  <mat-dialog-content >
+    <div fxLayout="column">
+      <p class="text-warning">
+        {{ error }}
+      </p>
       <mat-form-field>
-        <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required>
-        <mat-error *ngIf="username.errors?.required">Username is required</mat-error>
+        <input matInput placeholder="Email" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required>
+        <mat-error *ngIf="username.errors?.required">Email is required</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
         <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
       </mat-form-field>
       <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
-    </p>
+    </div>
   </mat-dialog-content>
-  <mat-dialog-actions>
-    <span class="flex-spacer"></span>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button type="submit" mat-button class="background-primary text-floral-white" (click)="onLogin()" >Login</button>
+  <mat-dialog-actions fxLayout="column" fxLayoutAlign="space-between center" >
+    <div fxLayout="row">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button type="submit" mat-button class="background-primary text-floral-white" (click)="onLogin()" >Login</button>
+    </div>
+    <a mat-button (click)="openSignupForm()" class="text-warning">I do not have an account. Create one</a>
   </mat-dialog-actions>
-  <a mat-button (click)="openSignupForm()">I do not have an account. Create one</a>
 </form>

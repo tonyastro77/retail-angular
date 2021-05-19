@@ -23,8 +23,6 @@
           <span class="fa fa-chevron-left fa-lg"></span>
         </button>
         <button mat-button (click)="goBack()">BACK</button>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
         <button mat-button [routerLink]="['/productdetail', next]">
           <span class="fa fa-chevron-right fa-lg"></span>
         </button>
@@ -36,7 +34,6 @@
       <h3>Comments</h3>
       <mat-list-item *ngFor="let comment of product.comments">
          <h4 matLine>{{comment.comment}}</h4>
-         <p matLine>{{comment.rating}} stars</p>
          <p matLine>by {{comment.author}}</p><p matLine>{{comment.date | date:'MMM d, y, h:mm:ss a'}}</p>
       </mat-list-item>
       <mat-divider></mat-divider>

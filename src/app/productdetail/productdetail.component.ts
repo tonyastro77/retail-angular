@@ -34,6 +34,7 @@ export class ProductdetailComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.getCurrentUserInfo();
     this.productservice.getProducts()
      .subscribe(products => this.product = products);
 
@@ -43,8 +44,6 @@ export class ProductdetailComponent implements OnInit {
     this.route.params
      .pipe(switchMap((params: Params) =>  this.productservice.getProduct(params['id'])))
      .subscribe(product => {this.product = product; this.setPrevNext(product.id); this.getComments(product.id)});
-
-
   }
   getCurrentUserInfo(){
     this.userService.getCurrentUser().then(userID => {
